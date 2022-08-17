@@ -27,6 +27,11 @@ public class CourseDetailsEndpoint {
     @ResponsePayload
     public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
         Course course = courseDetailsService.findById(request.getId());
+
+        if(course == null) {
+            throw new CourseNotFoundException("Invalid Course Id " + request.getId());
+        }
+
         return mapResponse(course);
     }
 
