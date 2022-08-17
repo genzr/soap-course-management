@@ -22,6 +22,22 @@
     </xs:complexType>
   </xs:element>
 
+  <xs:element name="DeleteCourseDetailsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:int" name="id"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DeleteCourseDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="tns:Status" name="status"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
   <xs:element name="GetAllCourseDetailsRequest">
     <xs:complexType>
     </xs:complexType>
@@ -42,5 +58,12 @@
       <xs:element name="description" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+
+  <xs:simpleType name="Status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS"/>
+      <xs:enumeration value="FAILURE"/>
+    </xs:restriction>
+  </xs:simpleType>
   
 </xs:schema>

@@ -10,6 +10,10 @@ import java.util.List;
 @Service
 public class CourseDetailsService {
 
+    public enum Status {
+        SUCCESS, FAILURE;
+    }
+
     private static List<Course> courseList = new ArrayList<>();
 
     static {
@@ -36,16 +40,16 @@ public class CourseDetailsService {
     }
 
     //delete a course by id
-    public int deleteCourse(int id) {
+    public Status deleteCourse(int id) {
         Iterator<Course> iterator = courseList.iterator();
         while(iterator.hasNext()) {
             Course course = iterator.next();
             if(course.getId()==id) {
                 iterator.remove();
-                return 1;
+                return Status.SUCCESS;
             }
         }
-        return 0;
+        return Status.FAILURE;
     }
 
 }

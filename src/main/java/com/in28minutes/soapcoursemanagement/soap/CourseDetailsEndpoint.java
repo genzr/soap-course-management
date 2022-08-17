@@ -37,6 +37,23 @@ public class CourseDetailsEndpoint {
         return mapResponseAll(courseList);
     }
 
+    @PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "DeleteCourseDetailsRequest")
+    @ResponsePayload
+    public DeleteCourseDetailsResponse processDeleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
+        DeleteCourseDetailsResponse deleteCourseDetailsResponse = new DeleteCourseDetailsResponse();
+        CourseDetailsService.Status status = courseDetailsService.deleteCourse(request.getId());
+        deleteCourseDetailsResponse.setStatus(mapStatus(status));
+        return deleteCourseDetailsResponse;
+    }
+
+    private Status mapStatus(CourseDetailsService.Status status) {
+        if (status.toString().equals(Status.SUCCESS.toString())) {
+            return Status.SUCCESS;
+        } else {
+            return Status.FAILURE;
+        }
+    }
+
     private GetCourseDetailsResponse mapResponse(Course course) {
         GetCourseDetailsResponse response = new GetCourseDetailsResponse();
         CourseDetails courseDetails = mapCourse(course);
