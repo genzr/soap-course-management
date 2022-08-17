@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="http://in28minutes.com/courses" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="GetCourseDetailsRequest">
+            <element name="id">
+                <data type="integer"/>
+            </element>
+        </element>
+    </start>
+</grammar>
